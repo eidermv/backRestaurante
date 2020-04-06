@@ -39,7 +39,7 @@ async function getSedePorId(Id) {
             return " ";
         }else{
             var sedeJSON = [];
-            resp.forEach(function (ing, index, arr) {
+            resp.forEach(function (sed, index, arr) {
                 sedeJSON.push(
                     {
                         Id: sed.id_sede,
