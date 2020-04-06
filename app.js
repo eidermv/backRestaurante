@@ -15,6 +15,7 @@ var usersRouter = require('./routes/users');
 
 var ingredienteC = require('./src/controlador/ingredienteControlador');
 var atencionC = require('./src/controlador/atencionControlador');
+var sedeC = require('./src/controlador/sedeControlador');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/ingrediente', ingredienteC);
 app.use('/atencion', atencionC);
+app.use('/sede', sedeC);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
