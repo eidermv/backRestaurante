@@ -17,6 +17,7 @@ var ingredienteC = require('./src/controlador/ingredienteControlador');
 var atencionC = require('./src/controlador/atencionControlador');
 var sedeC = require('./src/controlador/sedeControlador');
 var menuC = require('./src/controlador/menuControlador');
+var clienteC = require('./src/controlador/clienteControlador');
 
 var app = express();
 
@@ -39,6 +40,7 @@ app.use('/ingrediente', ingredienteC);
 app.use('/atencion', atencionC);
 app.use('/sede', sedeC);
 app.use('/menu', menuC);
+app.use('/cliente', clienteC);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
