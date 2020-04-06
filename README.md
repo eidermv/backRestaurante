@@ -29,19 +29,13 @@ ____________________
 
 `DBNAME = nombre de la base de datos`
 
-`TIEMPO = 10h`
-
-`ALGORITMO = HS256`
-
-`CLAVE = miclaveprueba123`
-
 ###### 3. Ejecutar proyecto
 
 - En una terminal que este ubicada en el proyecto, ejecutar el siguiente comando
 
-`SET DEBUG=myapis:* & npm start`
+`SET DEBUG=backRestaurante:* & npm start`
 
-- Recuerde cambiar `myapis` por el nombre del proyecto
+- Recuerde cambiar `backRestaurante` por el nombre del proyecto
 
 ### Listo para consumir servicios 🍺 
 
