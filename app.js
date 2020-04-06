@@ -13,6 +13,9 @@ dotenv.config();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var ingredienteC = require('./src/controlador/ingredienteControlador');
+var atencionC = require('./src/controlador/atencionControlador');
+
 var app = express();
 
 // view engine setup
@@ -30,6 +33,8 @@ app.use(helmet());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/ingrediente', ingredienteC);
+app.use('/atencion', atencionC);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
