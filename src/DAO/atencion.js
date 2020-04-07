@@ -1,4 +1,7 @@
 var mariaDb = require('../db/db');
+var sede = require('./sede');
+var cliente = require('./cliente');
+var menu = require('./menu');
 
 //SELECT id_atencion, id_sede, id_cliente, id_menu, cantidad_ped
 // FROM atencion;
@@ -13,9 +16,9 @@ async function getAtenciones() {
             atencionesJSON.push(
                 {
                     Id: aten.id_atencion,
-                    Id_sede: aten.id_sede,
-                    Id_cliente: aten.id_cliente,
-                    Id_menu: aten.id_menu,
+                    Sede: sede.getSedePorId(Number(aten.id_sede)),
+                    Cliente: cliente.getClientePorId(Number(aten.id_cliente)),
+                    Menu: menu.getMenuPorId(Number(aten.id_menu)),
                     Cantidad: aten.cantidad_ped
                 }
             );
@@ -41,7 +44,7 @@ async function getAtencionPorID(Id) {
             return " ";
         }else{
             var atencionesJSON = {};
-            resp.forEach(function (prod, index, arr) {
+            resp.forEach(function (aten, index, arr) {
                 atencionesJSON=
                     {
                         Id: aten.id_atencion,

@@ -1,4 +1,5 @@
 var mariaDb = require('../db/db');
+var sede = require('./sede');
 
 async function getIngredientes() {
     try {
@@ -11,12 +12,13 @@ async function getIngredientes() {
         }else{
             var ingredienteJSON = [];
             resp.forEach(function (ing, index, arr) {
+
                 ingredienteJSON.push(
                     {
                         Id: ing.id_ingrediente,
                         Nombre: ing.nombre,
                         Cantidad: ing.cantidad,
-                        Id_sede: ing.id_sede
+                        Sede: sede.getSedePorId(ing.id_sede)
                     }
                 );
 
@@ -46,7 +48,7 @@ async function getIngredientePorId(Id) {
                         Id: ing.id_ingrediente,
                         Nombre: ing.nombre,
                         Cantidad: ing.cantidad,
-                        Id_sede: ing.id_sede
+                        Sede: sede.getSedePorId(ing.id_sede)
                     }
                 );
 
