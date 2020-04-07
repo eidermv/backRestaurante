@@ -1,14 +1,11 @@
 var mariaDb = require('../db/db');
-var sede = require('./sede');
-var cliente = require('./cliente');
-var menu = require('./menu');
 
 //SELECT id_atencion, id_sede, id_cliente, id_menu, cantidad_ped
 // FROM atencion;
 async function getAtenciones() {
     try {
         let conn = await mariaDb.getConn();
-        const resp = await conn.query("select id_atencion, id_sede, id_cliente, id_menu, cantidad_ped from atencion;");
+        const resp = await conn.query("select a.id_atencion, a.id_sede, a.id_cliente, a.id_menu, a.cantidad_ped, s.direccion, s.barrio, c.nombre, c.apellido, m.descripcion from atencion as a, sede as s, cliente as c, menu as m where s.id_sede = a.id_sede and c.id_cliente = a.id_cliente and m.id_menu = a.id_menu ;");
         conn.release();
 
         var atencionesJSON = [];
@@ -16,9 +13,21 @@ async function getAtenciones() {
             atencionesJSON.push(
                 {
                     Id: aten.id_atencion,
-                    Sede: sede.getSedePorId(Number(aten.id_sede)),
-                    Cliente: cliente.getClientePorId(Number(aten.id_cliente)),
-                    Menu: menu.getMenuPorId(Number(aten.id_menu)),
+                    Sede: {
+                        Id: aten.id_sede,
+                        Direccion: aten.direccion,
+                        Barrio: aten.barrio
+                    },
+                    Cliente: {
+                        Id: aten.id_cliente,
+                        Nombre: aten.nombre,
+                        Apellido: aten.apellido
+                    },
+                    Menu: {
+                        Id: aten.id_menu,
+                        Descripcion: aten.descripcion,
+                        Id_sede: aten.id_sede
+                    },
                     Cantidad: aten.cantidad_ped
                 }
             );
